@@ -31,6 +31,30 @@
         }
 
         .dropdown:hover .dropdown-content {display: block;}
+        
+        #banner-inner { 
+        position: relative; 
+        top: 0;
+        background: #fff;
+        padding: 0 0 15px;
+        border: 0;
+        }
+
+        #banner a {
+        display: inline;
+        position: relative;
+        font-size: 100px;
+        letter-spacing: -5px;
+        color: rgba(0,0,255,0.5); 
+        }
+
+        #banner a:after {
+        content: "Blog Title";
+        position: absolute; left: 10px; top: 5px;
+        color: rgba(255,0,0,0.5);   
+        width: 100%;
+        }
+
     </style>
 </head>
 
@@ -217,7 +241,7 @@
 
     </section>
     <div class="recent-work-header row text-center">
-        <h2 class="col-md-6 m-auto h2 semi-bold-600">Gallery</h2>
+        <h2 class="col-md-6 m-auto h2 semi-bold-600" name="banner">Gallery</h2>
     </div>
     <section class="container overflow-hidden py-5">
         <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 projects">
