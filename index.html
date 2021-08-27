@@ -649,19 +649,26 @@
     <script src="assets/js/isotope.pkgd.js"></script>
     <!-- Page Script -->
     <script>
-       $(window).scroll(function() {
-      console.log($(window).scrollTop());
-      var topDivHeight = $(".topdiv").height();
-      var viewPortSize = $(window).height();
+    $(document).ready(function(){
+var view = {};
 
-      var triggerAt = 150;
-      var triggerHeight = (topDivHeight - viewPortSize) + triggerAt;
+var checkPosition = function(){
+   var elem = $('.fadethisdiv'), top = elem.offset().top;
 
-      if ($(window).scrollTop() >= triggerHeight) {
-        $('.fadethisdiv').css('visibility', 'visible').hide().fadeIn();
-        $(this).off('scroll');
-      }
-    });
+                if (top - view.limit < 300) {
+                    elem.css('display','none'); 
+                }
+            };
+
+       $(window).bind('scroll', function() {
+
+            view.top = $(window).scrollTop();
+            view.limit = view.top + $(window).height();
+
+            checkPosition();
+        }); 
+
+});
 
     </script>
     <!-- Templatemo -->
