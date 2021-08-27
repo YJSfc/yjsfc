@@ -136,25 +136,20 @@
         }
     </style>
  <script>
-        function FadeInSection(props) {
-          const [isVisible, setVisible] = React.useState(true);
-          const domRef = React.useRef();
-          React.useEffect(() => {
-            const observer = new IntersectionObserver(entries => {
-              entries.forEach(entry => setVisible(entry.isIntersecting));
-            });
-            observer.observe(domRef.current);
-            return () => observer.unobserve(domRef.current);
-          }, []);
-          return (
-            <div
-              className={`fade-in-section ${isVisible ? 'is-visible' : ''}`}
-              ref={domRef}
-            >
-              {props.children}
-            </div>
-          );
-        }
+       $(window).scroll(function() {
+  console.log($(window).scrollTop());
+  var topDivHeight = $(".topdiv").height();
+  var viewPortSize = $(window).height();
+
+  var triggerAt = 150;
+  var triggerHeight = (topDivHeight - viewPortSize) + triggerAt;
+
+  if ($(window).scrollTop() >= triggerHeight) {
+    $('.fadethisdiv').css('visibility', 'visible').hide().fadeIn();
+    $(this).off('scroll');
+  }
+});
+
     </script>
 </head>
 
@@ -557,9 +552,9 @@
      <article class="container-fluid bg-light">
          <div class="worksingle-related-header row"><div class="container">
             <div class="container-fluid pb-5">
-                 <FadeInSection>
+                 <div class="fadethisdiv">
                  <img class="img-fluid" src="https://ssl.pstatic.net/tveta/libs/1351/1351361/1c619b6558fc0595730d_20210825164225873.jpg" alt="Card image" style="width:100%">
-                 </FadeInSection>
+                </div>
             </div>
          </div>
      </article>
