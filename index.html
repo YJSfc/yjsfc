@@ -114,28 +114,46 @@
 
         .dropdown:hover .dropdown-content {display: block;}
         
-        #banner-inner { 
-        position: relative; 
-        top: 0;
-        background: #fff;
-        padding: 0 0 15px;
-        border: 0;
-        }
-
-        .fade-in-section {
-          opacity: 0;
-          transform: translateY(20vh);
+        .star {
           visibility: hidden;
-          transition: opacity 0.6s ease-out, transform 1.2s ease-out;
-          will-change: opacity, visibility;
+          transition: visibility cubic-bezier(.165, .84, .44, 1) .25s;
         }
-        .fade-in-section.is-visible {
-          opacity: 1;
-          transform: none;
-          visibility: visible;
-        }
-    </style>
 
+        .fadeIn {
+          -webkit-animation: animat_show 0.8s;
+          animation: animat_show 0.8s;
+          visibility: visible !important;
+        }
+
+        @-webkit-keyframes animat_show {
+          0% {
+            opacity: 0
+          }
+          100% {
+            opacity: 1
+          }
+        }
+        
+    </style>
+    <script>
+        function showImages(el) {
+          var windowHeight = jQuery(window).height();
+          $(el).each(function() {
+            var thisPos = $(this).offset().top;
+
+            var topOfWindow = $(window).scrollTop();
+            if (topOfWindow + windowHeight - 200 > thisPos) {
+              $(this).addClass("fadeIn");
+            }else{
+              $(this).removeClass("fadeIn");
+            }
+          });
+        }
+
+        $(window).scroll(function() {
+          showImages('.star');
+        });
+    </script>
 </head>
 
 <body>
@@ -537,9 +555,7 @@
      <article class="container-fluid bg-light">
          <div class="worksingle-related-header row"><div class="container">
             <div class="container-fluid pb-5">
-                 <div class="fadethisdiv">
-                 <img class="img-fluid" src="https://ssl.pstatic.net/tveta/libs/1351/1351361/1c619b6558fc0595730d_20210825164225873.jpg" alt="Card image" style="width:100%">
-                </div>
+                 <img class="img-fluid star" src="https://ssl.pstatic.net/tveta/libs/1351/1351361/1c619b6558fc0595730d_20210825164225873.jpg" alt="Card image" style="width:100%">
             </div>
          </div>
      </article>
@@ -648,29 +664,7 @@
     <!-- Isotope -->
     <script src="assets/js/isotope.pkgd.js"></script>
     <!-- Page Script -->
-    <script>
-    $(document).ready(function(){
-var view = {};
-
-var checkPosition = function(){
-   var elem = $('.fadethisdiv'), top = elem.offset().top;
-
-                if (top - view.limit < 300) {
-                    elem.css('display','none'); 
-                }
-            };
-
-       $(window).bind('scroll', function() {
-
-            view.top = $(window).scrollTop();
-            view.limit = view.top + $(window).height();
-
-            checkPosition();
-        }); 
-
-});
-
-    </script>
+         
     <!-- Templatemo -->
     <script src="assets/js/templatemo.js"></script>
     <!-- Custom -->
